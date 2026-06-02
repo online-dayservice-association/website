@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一般社団法人オンラインデイサービス協会</title>
+<meta name="description" content="老いても、離れても、つながっていられる場所を。誠実なオンラインデイサービスが集う場を、これからつくる協会です。">
+<meta property="og:title" content="一般社団法人オンラインデイサービス協会｜老いても、離れても、つながっていられる場所を">
+<meta property="og:description" content="老いても、離れても、つながっていられる場所を。誠実なオンラインデイサービスが集う場を、これからつくる協会です。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onlinedayservice.com">
+<meta property="og:locale" content="ja_JP">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f3ec;
+    --bg-soft:#efe8dc;
+    --ink:#33312b;
+    --ink-soft:#5c574d;
+    --accent:#6f7d5e;
+    --accent-deep:#566049;
+    --line:#ddd4c4;
+    --white:#fbf9f5;
+    --serif:"Zen Old Mincho", serif;
+    --sans:"Zen Kaku Gothic New", sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:1.0625rem;
+    line-height:2.0;
+    letter-spacing:0.02em;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .serif{font-family:var(--serif);}
+
+  /* ---------- ヘッダーナビ ---------- */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.1rem clamp(1.2rem,4vw,3rem);
+    background:rgba(247,243,236,0);
+    transition:background .4s ease, box-shadow .4s ease, padding .4s ease;
+  }
+  header.nav.scrolled{
+    background:rgba(247,243,236,.92);
+    backdrop-filter:blur(8px);
+    box-shadow:0 1px 0 var(--line);
+    padding:.8rem clamp(1.2rem,4vw,3rem);
+  }
+  header.nav .brand{
+    font-family:var(--serif);
+    font-size:1rem;
+    font-weight:500;
+    letter-spacing:.06em;
+    color:var(--ink);
+    text-decoration:none;
+    line-height:1.4;
+  }
+  header.nav .brand small{display:block;font-size:.7rem;color:var(--ink-soft);letter-spacing:.1em;font-family:var(--sans);}
+  nav.menu{display:flex;gap:1.6rem;}
+  nav.menu a{
+    font-size:.82rem;color:var(--ink-soft);text-decoration:none;
+    letter-spacing:.06em;transition:color .3s;position:relative;white-space:nowrap;
+  }
+  nav.menu a:hover{color:var(--accent-deep);}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:.4rem;}
+  .menu-toggle span{width:24px;height:1.5px;background:var(--ink);display:block;transition:.3s;}
+
+  /* ---------- ヒーロー ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:7rem clamp(1.4rem,7vw,8rem) 4rem;
+    position:relative;
+    background:
+      radial-gradient(120% 90% at 80% 10%, rgba(111,125,94,.10), transparent 55%),
+      radial-gradient(100% 80% at 10% 90%, rgba(214,200,170,.30), transparent 60%),
+      var(--bg);
+  }
+  .hero .lead{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(2rem,5.4vw,3.7rem);
+    line-height:1.65;
+    letter-spacing:.04em;
+    color:var(--ink);
+    max-width:18em;
+    opacity:0;transform:translateY(22px);
+    animation:rise 1.3s cubic-bezier(.2,.7,.2,1) .2s forwards;
+  }
+  .hero .assoc{
+    margin-top:2.2rem;
+    font-size:.95rem;letter-spacing:.14em;color:var(--accent-deep);
+    opacity:0;transform:translateY(18px);
+    animation:rise 1.2s cubic-bezier(.2,.7,.2,1) .7s forwards;
+  }
+  .hero .sub{
+    margin-top:1.6rem;
+    max-width:30em;
+    font-size:1rem;
+    line-height:2.1;
+    color:var(--ink-soft);
+    opacity:0;transform:translateY(18px);
+    animation:rise 1.2s cubic-bezier(.2,.7,.2,1) 1s forwards;
+  }
+  .scroll-cue{
+    position:absolute;bottom:2.2rem;left:clamp(1.4rem,7vw,8rem);
+    display:flex;align-items:center;gap:.7rem;
+    font-size:.72rem;letter-spacing:.18em;color:var(--ink-soft);
+    opacity:0;animation:fade 1.5s ease 1.6s forwards;
+  }
+  .scroll-cue .bar{width:46px;height:1px;background:var(--ink-soft);position:relative;overflow:hidden;}
+  .scroll-cue .bar::after{content:"";position:absolute;inset:0;background:var(--accent);transform:translateX(-100%);animation:slide 2.4s ease-in-out infinite;}
+
+  @keyframes rise{to{opacity:1;transform:translateY(0);}}
+  @keyframes fade{to{opacity:1;}}
+  @keyframes slide{0%{transform:translateX(-100%);}50%{transform:translateX(0);}100%{transform:translateX(100%);}}
+
+  /* ---------- セクション共通 ---------- */
+  section{padding:clamp(4.5rem,10vw,8rem) clamp(1.4rem,7vw,8rem);}
+  .section-tag{
+    font-size:.74rem;letter-spacing:.22em;color:var(--accent);
+    margin-bottom:1.4rem;display:flex;align-items:center;gap:.8rem;
+  }
+  .section-tag::before{content:"";width:28px;height:1px;background:var(--accent);display:inline-block;}
+  .section-head{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(1.45rem,3.4vw,2.3rem);
+    line-height:1.7;
+    letter-spacing:.03em;
+    margin-bottom:2.4rem;
+    max-width:24em;
+  }
+  .prose{max-width:40em;}
+  .prose p{margin-bottom:1.7rem;color:var(--ink-soft);}
+  .prose p:last-child{margin-bottom:0;}
+
+  .alt{background:var(--bg-soft);}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity 1s ease, transform 1s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- 支えられること カード ---------- */
+  .pillars{display:grid;gap:1.4rem;margin-top:3rem;max-width:60em;}
+  @media(min-width:760px){.pillars{grid-template-columns:repeat(3,1fr);}}
+  .pillar{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:2.2rem 1.9rem;
+    position:relative;
+  }
+  .pillar .num{
+    font-family:var(--serif);font-size:1.6rem;color:var(--accent);
+    line-height:1;margin-bottom:1rem;display:block;
+  }
+  .pillar h3{
+    font-family:var(--serif);font-weight:500;font-size:1.18rem;
+    margin-bottom:1rem;letter-spacing:.03em;line-height:1.6;
+  }
+  .pillar p{font-size:.95rem;line-height:1.95;color:var(--ink-soft);}
+
+  .closing-note{margin-top:3rem;max-width:40em;color:var(--ink-soft);}
+
+  /* ---------- 約束 ---------- */
+  .promises{margin-top:3rem;max-width:46em;display:flex;flex-direction:column;gap:2.2rem;}
+  .promise{padding-left:2rem;border-left:2px solid var(--accent);}
+  .promise h3{
+    font-family:var(--serif);font-weight:500;font-size:1.2rem;
+    margin-bottom:.9rem;letter-spacing:.02em;line-height:1.6;
+  }
+  .promise p{color:var(--ink-soft);font-size:1rem;line-height:2.0;}
+
+  /* ---------- お問い合わせ ---------- */
+  .contact-intro{max-width:40em;margin-bottom:3rem;color:var(--ink-soft);}
+  .mail-card{
+    display:inline-flex;flex-direction:column;gap:.5rem;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:2rem clamp(1.6rem,5vw,3.2rem);
+    text-decoration:none;
+    transition:border-color .3s, box-shadow .3s, transform .25s;
+    box-shadow:0 1px 0 var(--line);
+  }
+  .mail-card:hover{border-color:var(--accent);box-shadow:0 10px 30px rgba(86,96,73,.12);transform:translateY(-2px);}
+  .mail-card .mail-label{font-size:.78rem;letter-spacing:.16em;color:var(--accent);}
+  .mail-card .mail-addr{
+    font-family:var(--serif);
+    font-size:clamp(1.3rem,4.5vw,2rem);
+    color:var(--ink);
+    letter-spacing:.02em;
+    word-break:break-all;
+  }
+  .mail-card .mail-hint{font-size:.8rem;color:var(--ink-soft);letter-spacing:.04em;}
+  .privacy-note{margin-top:1.6rem;}
+  form{max-width:42em;}
+  .field{margin-bottom:1.7rem;}
+  .field label{display:block;font-size:.86rem;letter-spacing:.04em;margin-bottom:.6rem;color:var(--ink);}
+  .field label .req{color:var(--accent-deep);font-size:.75rem;margin-left:.4rem;}
+  .field input,.field select,.field textarea{
+    width:100%;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:.85rem 1rem;
+    font-family:var(--sans);
+    font-size:1rem;
+    color:var(--ink);
+    transition:border-color .3s, box-shadow .3s;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(111,125,94,.13);
+  }
+  .field textarea{resize:vertical;min-height:140px;line-height:1.9;}
+  .submit-btn{
+    background:var(--accent-deep);color:var(--white);
+    border:none;border-radius:3px;
+    padding:1rem 3rem;
+    font-family:var(--sans);font-size:1rem;letter-spacing:.1em;
+    cursor:pointer;transition:background .3s, transform .2s;
+  }
+  .submit-btn:hover{background:var(--accent);transform:translateY(-1px);}
+  .privacy-note{margin-top:1.4rem;font-size:.82rem;color:var(--ink-soft);}
+
+  /* ---------- フッター ---------- */
+  footer{
+    background:var(--accent-deep);
+    color:#e8e6dd;
+    padding:clamp(3.5rem,7vw,5rem) clamp(1.4rem,7vw,8rem) 2.5rem;
+  }
+  .footer-grid{display:flex;flex-wrap:wrap;gap:3rem;justify-content:space-between;max-width:60em;}
+  .footer-org .name{font-family:var(--serif);font-size:1.15rem;letter-spacing:.04em;margin-bottom:1.2rem;line-height:1.6;}
+  .footer-org p{font-size:.9rem;line-height:1.9;color:#cfcdc2;}
+  .footer-org a{color:#e8e6dd;text-decoration:none;border-bottom:1px solid rgba(232,230,221,.4);}
+  .footer-org a:hover{border-color:#e8e6dd;}
+  .footer-nav{display:flex;flex-direction:column;gap:.8rem;}
+  .footer-nav a{color:#cfcdc2;text-decoration:none;font-size:.86rem;letter-spacing:.04em;transition:color .3s;}
+  .footer-nav a:hover{color:#fff;}
+  .copyright{margin-top:3rem;padding-top:1.6rem;border-top:1px solid rgba(232,230,221,.18);font-size:.76rem;color:#b3b1a6;letter-spacing:.06em;}
+
+  @media(max-width:760px){
+    nav.menu{
+      position:fixed;top:0;right:0;bottom:0;width:74%;max-width:320px;
+      background:var(--white);flex-direction:column;justify-content:center;
+      gap:2rem;padding:3rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.2,.7,.2,1);
+      box-shadow:-10px 0 40px rgba(0,0,0,.08);z-index:60;
+    }
+    nav.menu.open{transform:translateX(0);}
+    nav.menu a{font-size:1rem;}
+    .menu-toggle{display:flex;z-index:61;}
+    body.menu-open{overflow:hidden;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a href="#top" class="brand">オンラインデイサービス協会<small>ONLINE DAY SERVICE ASSOCIATION</small></a>
+  <nav class="menu" id="menu">
+    <a href="#why">なぜ、いま</a>
+    <a href="#belief">私たちの考え方</a>
+    <a href="#about">オンラインデイサービスとは</a>
+    <a href="#support">オンラインでも</a>
+    <a href="#join">ともに場をつくる</a>
+    <a href="#contact">お問い合わせ</a>
+  </nav>
+  <button class="menu-toggle" id="toggle" aria-label="メニュー"><span></span><span></span><span></span></button>
+</header>
+
+<!-- ヒーロー -->
+<section class="hero" id="top">
+  <h1 class="lead serif">老いても、離れても、<br>つながっていられる場所を。</h1>
+  <p class="assoc">一般社団法人オンラインデイサービス協会</p>
+  <p class="sub">オンラインでできることは、多くありません。それでも、その小さな支えには確かな力がある。そう信じる事業者が集う場を、これからつくります。</p>
+  <div class="scroll-cue"><span class="bar"></span>スクロールして詳しく見る</div>
+</section>
+
+<!-- なぜ、いま -->
+<section id="why">
+  <div class="reveal">
+    <div class="section-tag">なぜ、いま、この場をつくるのか</div>
+    <h2 class="section-head">新しい分野が広がるいま、<br>誠実に向き合う人たちが集まる場を</h2>
+    <div class="prose">
+      <p>ビデオ通話を通じて、離れて暮らす人どうしが顔を合わせ、体操をしたり、歌をうたったり、昔の話に花を咲かせたりする。オンラインデイサービスという新しい形が、少しずつ広がりはじめています。</p>
+      <p>近くに通える場所がなくても、家から出るのが難しくなっても、画面の向こうに集える場所がある。過疎の進む地域でも、暮らしの形が変わっても、人とのつながりを持ち続けられる。私たちは、その可能性に希望を感じています。</p>
+      <p>新しい分野が広がるときには、その良さが正しく伝わらないまま、期待だけが大きくふくらんでしまうこともあります。だからこそ、この分野が育っていくいま、誠実に向き合う人たちが集まる場をつくりたいと考えました。</p>
+      <p>できることは、できると伝える。できないことは、隠さずに伝える。効果を大きく見せることよりも、一人ひとりのつながりを大切にする。そうした姿勢を分かち合える事業者が、これから集う場所。それが、私たちの目指すものです。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 私たちが大切にしている考え方 -->
+<section class="alt" id="belief">
+  <div class="reveal">
+    <div class="section-tag">私たちが大切にしている考え方</div>
+    <h2 class="section-head">年を重ねることは、<br>誰にでも訪れる自然な歩みです</h2>
+    <div class="prose">
+      <p>年を重ねると、できることは少しずつ変わっていきます。それは、誰にでも訪れる自然な歩みです。</p>
+      <p>体を動かし、できることを保とうとする。その努力は、とても大切なものです。私たちもまた、毎日の体操を欠かしません。そのうえで、私たちが同じくらい大切にしたいことがあります。たとえ思うように動けなくなっても、その人がその人らしく過ごせること。元気を取り戻していく方も、ゆっくりと変化を重ねていく方も、どちらの時間にも、同じように価値があるということです。</p>
+      <p>そして、その時間を支えるいちばんの力は、人とのつながりだと感じています。誰かと顔を合わせ、言葉を交わし、笑い合う。「また会えたね」と思える相手がいる。そのことが、一日を、そして毎日を、少しずつ確かなものにしていきます。</p>
+      <p>ここには、いろいろな方がいます。お体に障害をお持ちの方、認知症と診断されている方、しばらく人と話す機会がなかった方。状態も、暮らしも、住む場所もさまざまです。</p>
+      <p>それでも、同じ画面の前で、同じ時間を分かち合える。私たちは、そんな場を大切にしていきたいと思っています。</p>
+    </div>
+  </div>
+</section>
+
+<!-- オンラインデイサービスとは -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-tag">オンラインデイサービスとは</div>
+    <h2 class="section-head">ビデオ通話で、<br>離れた場所の人々とつながる時間</h2>
+    <div class="prose">
+      <p>オンラインデイサービスは、ビデオ通話を使って、離れた場所にいる方々がつながり、体操や脳トレ、合唱、昔の思い出を語り合う時間などをともに過ごす、新しい形のサービスです。</p>
+      <p>はじめに、正直にお伝えしておきたいことがあります。オンラインでは、できないことがたくさんあります。入浴や食事、お手洗いのお手伝いはできません。直接お体に触れる支援も、その場でお茶をお出しすることもできません。通われるデイサービスが担う役割のうち、オンラインでお届けできるのは、ほんの一部です。</p>
+      <p>それでも、画面を通じてだからこそ支えられることがあります。毎日の生活にリズムが生まれること。人と顔を合わせ、言葉を交わすこと。一人では忘れがちな水分を、みんなと一緒なら自然にとれること。こうした小さな積み重ねが、その人の毎日を、静かに支えていきます。</p>
+      <p>派手なことはできません。けれど、限られたなかでできることを、ていねいに重ねていく。私たちは、その一つひとつに意味があると考えています。</p>
+    </div>
+  </div>
+</section>
+
+<!-- オンラインでも、支えられること -->
+<section class="alt" id="support">
+  <div class="reveal">
+    <div class="section-tag">オンラインでも、支えられること</div>
+    <h2 class="section-head">限られたなかで、<br>大切にしていること</h2>
+    <div class="prose"><p>限られた時間のなかで、私たちが大切にしていることがいくつかあります。</p></div>
+    <div class="pillars">
+      <div class="pillar">
+        <span class="num">01</span>
+        <h3>生活のリズムを整える</h3>
+        <p>「今日はこの時間に参加する」という予定があるだけで、朝起きて、身支度をして、一日を始めるきっかけになります。ずっと横になって過ごす時間が少し減るだけでも、心と体の調子が変わってくることがあります。一日中がんばる必要はありません。起きて過ごす時間が、少しでもあること。それで十分です。</p>
+      </div>
+      <div class="pillar">
+        <span class="num">02</span>
+        <h3>人と話し、つながる</h3>
+        <p>同じ体操をして、同じ歌をうたい、同じ問題を考える。そうした「一緒に何かをする」時間があると、「何を話せばいいかわからない」という不安がやわらぎ、自然と会話が生まれます。脳トレも、正解を競うためではなく、おしゃべりのきっかけとして。答えられなくても大丈夫。「そういえば私も」と話が広がっていく、その時間こそを大切にしています。</p>
+      </div>
+      <div class="pillar">
+        <span class="num">03</span>
+        <h3>自分の体を、気にかける</h3>
+        <p>年を重ねると、のどの渇きに気づきにくくなることがあります。一人では忘れがちなことも、「みんなで一緒に」と声をかけあうと、自然とできることがあります。誰かと一緒だから続けられる。これも、つながりの力のひとつだと感じています。</p>
+      </div>
+    </div>
+    <p class="closing-note">一人ひとりの状態は違います。たくさん参加される方も、週に一度だけの方もいます。体の調子やお気持ちにあわせて、無理のない関わり方ができるように。私たちは、それぞれのペースを大切にしたいと考えています。</p>
+  </div>
+</section>
+
+<!-- これから、ともに場をつくる方へ -->
+<section id="join">
+  <div class="reveal">
+    <div class="section-tag">これから、ともに場をつくる方へ</div>
+    <h2 class="section-head">同じ思いを持つ仲間が集まる場を、<br>これからつくっていきます</h2>
+    <div class="prose">
+      <p>ここまでお読みくださった事業者の方へ。私たちは、同じ思いを持つ仲間が集まる場を、これからつくっていきます。</p>
+      <p>大切にしたいのは、難しい決まりごとではありません。ごく当たり前の、けれど守り続けるのは案外むずかしい、いくつかの約束です。</p>
+    </div>
+    <div class="promises">
+      <div class="promise">
+        <h3>できることと、できないことを、正直に伝える。</h3>
+        <p>オンラインでできることには限りがあります。それを大きく見せず、ありのままにお伝えします。</p>
+      </div>
+      <div class="promise">
+        <h3>「治る」「よくなる」と、約束しない。</h3>
+        <p>認知症や老いそのものを、治したり、元どおりにしたりすることを、私たちは約束しません。一人ひとり、感じ方も歩みも違います。確かなのは、つながりのなかで、その人らしい時間を支えられるということ。私たちが大切にするのは、そこです。</p>
+      </div>
+      <div class="promise">
+        <h3>一人ひとりの状態に、配慮する。</h3>
+        <p>体の調子も、お気持ちも、人それぞれ。無理をすすめず、その方にあわせた関わり方を大切にします。</p>
+      </div>
+    </div>
+    <p class="closing-note">こうした姿勢を、言葉だけでなく、日々の関わりのなかで分かち合える。そんな事業者と、これからの場をつくっていきたいと考えています。</p>
+  </div>
+</section>
+
+<!-- お問い合わせ -->
+<section class="alt" id="contact">
+  <div class="reveal">
+    <div class="section-tag">お問い合わせ</div>
+    <h2 class="section-head">まずは、お気軽にご連絡ください</h2>
+    <p class="contact-intro">オンラインデイサービスという新しい取り組みに、関心を持ってくださる方へ。同じ思いで場をつくっていきたいと考えてくださる事業者の方。地域の高齢者支援に活かせないかとお考えの自治体の方。サービスの利用を検討されているご本人やご家族の方。どなたからのお問い合わせも、お待ちしています。まずは、お気軽にご連絡ください。一緒に、できることを考えていけたらと思います。</p>
+    <a class="mail-card" href="mailto:info@onlinedayservice.com">
+      <span class="mail-label">メールでのお問い合わせ</span>
+      <span class="mail-addr">info@onlinedayservice.com</span>
+      <span class="mail-hint">タップ・クリックでメールを作成できます</span>
+    </a>
+    <p class="privacy-note">いただいた情報は、お問い合わせへの対応以外には使用いたしません。</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-org">
+      <div class="name">一般社団法人オンラインデイサービス協会</div>
+      <p>
+        代表理事　澤本洋介<br>
+        高知県長岡郡本山町吉野347-1<br><br>
+        お問い合わせ：<a href="mailto:info@onlinedayservice.com">info@onlinedayservice.com</a>
+      </p>
+    </div>
+    <nav class="footer-nav">
+      <a href="#why">なぜ、いま</a>
+      <a href="#belief">私たちの考え方</a>
+      <a href="#about">オンラインデイサービスとは</a>
+      <a href="#support">オンラインでも</a>
+      <a href="#join">ともに場をつくる</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+  <div class="copyright">© 2026 一般社団法人オンラインデイサービス協会</div>
+</footer>
+
+<script>
+  // ナビ背景
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>40);});
+
+  // モバイルメニュー
+  const toggle=document.getElementById('toggle'),menu=document.getElementById('menu');
+  toggle.addEventListener('click',()=>{menu.classList.toggle('open');document.body.classList.toggle('menu-open');});
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');document.body.classList.remove('menu-open');}));
+
+  // スクロール出現
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
